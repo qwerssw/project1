@@ -10,7 +10,7 @@
 
     .sidebar {
         width: 250px;
-        background: #9cc6cfff;
+        background: #1a1a2e;
         color: white;
         display: flex;
         flex-direction: column;
@@ -19,7 +19,7 @@
 
     .sidebar h2 { margin-bottom: 40px; font-size: 22px; color: #fff; }
     .sidebar a {
-        color: #0c2a4fff;
+        color: #c4d8f1ff;
         text-decoration: none;
         margin-bottom: 15px;
         display: block;
@@ -60,7 +60,7 @@
     .btn:hover { background: #466369ff; }
     
     .btn-logout {
-        background: #9cc6cfff;
+        background: #1a1a2e;
     }
     .btn-logout:hover {
         background: #466369ff;
@@ -115,7 +115,7 @@
     <a href="{{ route('home') }}">На главную</a>
     <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
         @csrf
-        <button type="submit" class="btn btn-logout" style="width: 100%; text-align: left; background: #9cc6cfff; margin-top: 20px;">
+        <button type="submit" class="btn btn-logout" style="width: 100%; text-align: left;  margin-top: 20px;">
             Выйти
         </button>
     </form>

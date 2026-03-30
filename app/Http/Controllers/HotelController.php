@@ -12,12 +12,10 @@ class HotelController extends Controller
     public function index(Request $request)
     {
         $query = Hotel::query();
-        
 
         if ($request->has('city')) {
             $query->where('city', 'like', '%' . $request->city . '%');
         }
-        
 
         if ($request->has('min_price')) {
             $query->where('price_per_night', '>=', $request->min_price);
@@ -31,9 +29,9 @@ class HotelController extends Controller
         return view('home', compact('hotels'));
     }
 
-
     public function show($id)
     {
         $hotel = Hotel::findOrFail($id);
-return view('show', compact('hotel'));    }
+        return view('show', compact('hotel'));
+    }
 }
