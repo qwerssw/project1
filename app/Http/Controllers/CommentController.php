@@ -12,7 +12,7 @@ class CommentController extends Controller
     {
         $hotel = Hotel::findOrFail($hotelId);
         
-        // Валидация
+        
         $validated = $request->validate([
             'comment' => 'required|string|min:3|max:1000',
             'rating' => 'required|integer|min:1|max:5'

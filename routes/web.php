@@ -8,10 +8,10 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
-// ГЛАВНАЯ СТРАНИЦА
+use App\Http\Controllers\AboutController;
+// Главная страница
 Route::get('/', [HotelController::class, 'index'])->name('home');
-
+Route::get('/about',[AboutController::class,'about'])->name('about');
 // Маршруты аутентификации
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,10 +27,12 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/search/advanced', [SearchController::class, 'advanced'])->name('search.advanced');
 Route::get('/search/cities', [SearchController::class, 'cities'])->name('search.cities');
 
-// Страница dashboard (если нужна)
+// Страница dashboard 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
 
 // Маршруты для авторизованных пользователей
 Route::middleware('auth')->group(function () {
@@ -57,6 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/likes', [LikeController::class, 'index'])->name('likes.index');
     Route::post('/hotels/{hotel}/like', [LikeController::class, 'toggle'])->name('likes.toggle');
     Route::get('/hotels/{hotel}/like/check', [LikeController::class, 'check'])->name('likes.check');
+    
+
+    
 });
 
-//require __DIR__.'/auth.php';

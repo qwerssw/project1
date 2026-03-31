@@ -109,7 +109,7 @@
         }
 
         .menu a:hover {
-            color: #2e7d32;
+            color: #4b2e7dff;
         }
 
         /* Hero секция */
@@ -414,7 +414,7 @@
         </div>
     </div>
 
-    <!-- ПОИСК ПОСЕРЕДИНЕ -->
+    <!-- Поиск -->
     <div class="search-container">
         <form class="search-form" action="{{ route('search') }}" method="GET">
             <input type="text" name="q" class="search-input" placeholder="Поиск отелей, городов..." value="{{ request('q') }}">
@@ -423,7 +423,7 @@
     </div>
 
     <nav class="menu">
-        <a href="#">О нас</a>
+        <a href="{{ route('about') }}">О нас</a>
         <a href="#">Отели</a>
         <a href="#">Отзывы</a>
         @auth
