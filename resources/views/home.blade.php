@@ -479,7 +479,7 @@
     <div class="grid">
         @forelse($hotels as $hotel)
             <div class="card">
-                <img src="{{ $hotel->main_image ?? 'https://via.placeholder.com/300x200?text=Отель' }}" alt="Отель">
+            <img src="{{ $hotel->images->first()->image_path ?? 'default.jpg' }}" alt="{{ $hotel->name }}">
                 <div class="card-body">
                     <div class="card-title">{{ $hotel->name }}</div>
                     <div class="card-text">

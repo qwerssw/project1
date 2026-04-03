@@ -169,9 +169,8 @@
         }
 
         .thumbnail-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            display: flex;
+            justify-content:space-between;
             background: #f5f5f5;
             padding: 5px;
         }
