@@ -9,9 +9,14 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ImageController;
+
 // Главная страница
 Route::get('/', [HotelController::class, 'index'])->name('home');
 Route::get('/about',[AboutController::class,'about'])->name('about');
+
+
+Route::get('/image', [ImageController::class, 'index']);
 // Маршруты аутентификации
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

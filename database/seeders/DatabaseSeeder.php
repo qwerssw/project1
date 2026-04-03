@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         CommentSeeder::class,
         AmenitySeeder::class,
         LikeSeeder::class,
+        ImageSeeder::class,
     ]);
 }
 }
