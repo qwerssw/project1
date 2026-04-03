@@ -53,7 +53,6 @@ Route::middleware('auth')->group(function () {
     
     // Комментарии
     Route::post('/hotels/{hotelId}/comments', [CommentController::class, 'store'])->name('comments.store');
-    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
     
     // Избранное (лайки)
     Route::get('/likes', [LikeController::class, 'index'])->name('likes.index');

@@ -722,21 +722,7 @@
             <p>{{ $hotel->description }}</p>
         </div>
 
-        <!-- Удобства 
-        @if($hotel->amenities && count($hotel->amenities) > 0)
-        <div class="amenities">
-            <h3>Удобства</h3>
-            <div class="amenities-grid">
-                @foreach($hotel->amenities as $amenity)
-                    <div class="amenity-item">
-                        <span class="amenity-icon"></span>
-                        <span>{{ $amenity->name }}</span>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
--->
+
 <!-- Отзывы -->
 <div class="reviews">
     <h3>Отзывы гостей</h3>
@@ -744,7 +730,6 @@
     @php
         $comments = $hotel->comments ?? collect();
         $avgRating = $comments->avg('rating') ?? 0;
-        $commentsCount = $comments->count();
     @endphp
     
    

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class LikeController extends Controller
 {
    //список избранных 
-    
     public function index()
     {
         $likedHotels = auth()->user()->likedHotels()->with('images')->paginate(12);
@@ -26,7 +25,6 @@ class LikeController extends Controller
         if ($like) {
             // Удаление
             $like->delete();
-            $message = 'Отель удален из избранного';
             $liked = false;
         } else {
             // Добавление
@@ -34,20 +32,17 @@ class LikeController extends Controller
                 'user_id' => auth()->id(),
                 'hotel_id' => $hotel->id
             ]);
-            $message = 'Отель добавлен в избранное';
             $liked = true;
         }
         
         if (request()->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'message' => $message,
                 'liked' => $liked,
-                'likes_count' => $hotel->likes()->count()
-            ]);
+                ]);
         }
         
-        return back()->with('success', $message);
+        return back()->with('success');
     }
 
     //проверка

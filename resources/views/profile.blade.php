@@ -122,7 +122,7 @@
 </div>
 
 <div class="content">
-    <!-- Профиль пользователя из БД -->
+    <!-- Профиль пользователя  -->
     <div class="profile-card">
         <div>
             <p><strong>{{ Auth::user()->name }}</strong></p>
@@ -172,8 +172,8 @@
         <div class="cards">
             @forelse($likes ?? [] as $like)
                 <div class="card">
-                    <img src="{{ $like->hotel->main_image ?? 'https://via.placeholder.com/300x150?text=Отель' }}">
-                    <div class="card-body">
+                    <img src="{{ $like->hotel->images->first()->image_path  }}" alt="{{ $like->hotel->name }}">                    
+                        <div class="card-body">
                         <p><strong>{{ $like->hotel->name }}</strong></p>
                         <p>{{ $like->hotel->city }}</p>
                         <p>{{ $like->hotel->stars }} звезд</p>

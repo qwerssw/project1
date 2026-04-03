@@ -25,19 +25,7 @@ class CommentController extends Controller
             'rating' => $validated['rating']
         ]);
         
-        return back()->with('success', 'Спасибо за ваш отзыв!');
+        return back()->with('success');
     }
     
-    public function destroy($id)
-    {
-        $comment = Comment::findOrFail($id);
-        
-        if ($comment->user_id !== auth()->id()) {
-            abort(403);
-        }
-        
-        $comment->delete();
-        
-        return back()->with('success', 'Отзыв удален');
-    }
 }
