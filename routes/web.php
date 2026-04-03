@@ -60,7 +60,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/hotels/{hotel}/like', [LikeController::class, 'toggle'])->name('likes.toggle');
     Route::get('/hotels/{hotel}/like/check', [LikeController::class, 'check'])->name('likes.check');
     
-
-    
 });
 

@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    /**
-     * Показать список избранных отелей пользователя
-     */
+   //список избранных 
+    
     public function index()
     {
         $likedHotels = auth()->user()->likedHotels()->with('images')->paginate(12);
@@ -18,9 +17,6 @@ class LikeController extends Controller
         return view('likes.index', compact('likedHotels'));
     }
     
-    /**
-     * Добавить или удалить лайк (избранное)
-     */
     public function toggle(Hotel $hotel)
     {
         $like = Like::where('user_id', auth()->id())
@@ -28,12 +24,12 @@ class LikeController extends Controller
                     ->first();
         
         if ($like) {
-            // Удаляем лайк
+            // Удаление
             $like->delete();
             $message = 'Отель удален из избранного';
             $liked = false;
         } else {
-            // Добавляем лайк
+            // Добавление
             Like::create([
                 'user_id' => auth()->id(),
                 'hotel_id' => $hotel->id
@@ -53,10 +49,8 @@ class LikeController extends Controller
         
         return back()->with('success', $message);
     }
-    
-    /**
-     * Проверить, есть ли отель в избранном
-     */
+
+    //проверка
     public function check(Hotel $hotel)
     {
         $liked = auth()->user()->likedHotels()->where('hotel_id', $hotel->id)->exists();
