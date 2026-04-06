@@ -456,11 +456,11 @@
 
     <select id="starsFilter" onchange="applyFilterSort()">
         <option value="">Все звезды</option>
-        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>⭐⭐⭐⭐⭐ 5 звезд</option>
-        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>⭐⭐⭐⭐ 4 звезды</option>
-        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>⭐⭐⭐ 3 звезды</option>
-        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>⭐⭐ 2 звезды</option>
-        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>⭐ 1 звезда</option>
+        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>⚝⚝⚝⚝⚝ 5 звезд</option>
+        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>⚝⚝⚝⚝ 4 звезды</option>
+        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>⚝⚝⚝ 3 звезды</option>
+        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>⚝⚝ 2 звезды</option>
+        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>⚝ 1 звезда</option>
     </select>
 
     <select id="sortOrder" onchange="applyFilterSort()">
