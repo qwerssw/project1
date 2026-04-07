@@ -447,6 +447,7 @@
 </section>
 
 <div class="filters">
+        <form id="filterForm" action="{{ route('search') }}" method="GET" style="display: flex; gap: 15px; flex-wrap: wrap;">
     <select id="cityFilter" onchange="applyFilterSort()">
         <option value="">Все города</option>
         @foreach($cities ?? [] as $city)
@@ -456,11 +457,11 @@
 
     <select id="starsFilter" onchange="applyFilterSort()">
         <option value="">Все звезды</option>
-        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>⚝⚝⚝⚝⚝ 5 звезд</option>
-        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>⚝⚝⚝⚝ 4 звезды</option>
-        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>⚝⚝⚝ 3 звезды</option>
-        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>⚝⚝ 2 звезды</option>
-        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>⚝ 1 звезда</option>
+        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>5 звезд</option>
+        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>4 звезды</option>
+        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>3 звезды</option>
+        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>2 звезды</option>
+        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>1 звезда</option>
     </select>
 
     <select id="sortOrder" onchange="applyFilterSort()">
@@ -470,6 +471,33 @@
         <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Название ↑</option>
         <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Название ↓</option>
     </select>
+     <button type="submit" class="btn" style="display: flex;             
+    justify-content: center;    
+    align-items: center;        
+    padding: 0 20px;            
+    height: 45px;              
+    border-radius: 25px;       
+    background: #362170ff;      
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size:14px;
+    transition: 0.3s;">Применить</button>
+
+     <a href="{{ route('search') }}" class="btn" 
+     style="display: flex;             
+    justify-content: center;    
+    align-items: center;        
+    padding: 0 20px;            
+    height: 45px;              
+    border-radius: 25px;       
+    background: #555063ff;      
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size:14px;
+    transition: 0.3s;">Сбросить</a>
+    </form>
 </div>
 
 <!-- Контент -->

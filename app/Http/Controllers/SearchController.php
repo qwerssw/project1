@@ -38,10 +38,10 @@ class SearchController extends Controller
         if ($request->filled('sort')) {
             switch ($request->sort) {
                 case 'price_asc':
-                    $query->orderBy('price');
+                    $query->orderBy('price_per_night');
                     break;
                 case 'price_desc':
-                    $query->orderByDesc('price');
+                    $query->orderByDesc('price_per_night');
                     break;
                 case 'name_asc':
                     $query->orderBy('name');
