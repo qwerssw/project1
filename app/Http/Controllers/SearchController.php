@@ -10,29 +10,43 @@ class SearchController extends Controller
     public function index()
     {
         
-        $hotels = Hotel::with('images')->get();
-        $cities = Hotel::select('city')->distinct()->pluck('city');
+        $lang = app()->getLocale();
 
-        return view('home', compact('hotels', 'cities'));
+    $hotels = Hotel::with('images')->get();
+
+    $cities = Hotel::select($lang == 'en' ? 'city_en' : 'city')
+        ->distinct()
+        ->pluck($lang == 'en' ? 'city_en' : 'city')
+        ->filter();
+
+    return view('home', compact('hotels', 'cities'));
     }
 
     public function search(Request $request)
     {
-        $query = Hotel::with('images');
+        $lang = app()->getLocale();
 
-        if ($request->filled('q')) {
-            $query->where('name', 'like', "%{$request->q}%")
-                  ->orWhere('city', 'like', "%{$request->q}%")
-                  ->orWhere('description', 'like', "%{$request->q}%");
-        }
+$nameColumn = $lang == 'en' ? 'name_en' : 'name';
+$cityColumn = $lang == 'en' ? 'city_en' : 'city';
+$descColumn = $lang == 'en' ? 'description_en' : 'description';
+$query = Hotel::with('images');
+if ($request->filled('q')) {
+    $query->where(function($q) use ($request, $nameColumn, $cityColumn, $descColumn) {
+        $q->where($nameColumn, 'like', "%{$request->q}%")
+          ->orWhere($cityColumn, 'like', "%{$request->q}%")
+          ->orWhere($descColumn, 'like', "%{$request->q}%");
+    });
+}
 
         // Фильтры
-        if ($request->filled('city')) {
-            $query->where('city', $request->city);
-        }
-        if ($request->filled('stars')) {
-            $query->where('stars', $request->stars);
-        }
+       if ($request->filled('city')) {
+$query->where(function($q) use ($request, $cityColumn) {
+    $q->where($cityColumn, 'like', '%' . $request->city . '%')
+      ->orWhere('city', 'like', '%' . $request->city . '%');
+});}
+       if ($request->filled('stars')) {
+    $query->where('stars', '>=', intval($request->stars));
+}
 
         // Сортировка
         if ($request->filled('sort')) {
@@ -44,11 +58,11 @@ class SearchController extends Controller
                     $query->orderByDesc('price_per_night');
                     break;
                 case 'name_asc':
-                    $query->orderBy('name');
-                    break;
+                    $query->orderBy($nameColumn);
+                break;
                 case 'name_desc':
-                    $query->orderByDesc('name');
-                    break;
+                    $query->orderByDesc($nameColumn);
+                break;
                 default:
                     $query->orderBy('id', 'desc');
             }
@@ -60,7 +74,14 @@ class SearchController extends Controller
             return view('partials.hotel_cards', compact('hotels'))->render();
         }
 
-        $cities = Hotel::select('city')->distinct()->pluck('city');
+        $lang = app()->getLocale();
+$cityColumn = $lang == 'en' ? 'city_en' : 'city';
+
+$cities = Hotel::all()->map(function($hotel) use ($lang){
+    return $lang == 'en' && $hotel->city_en 
+            ? $hotel->city_en 
+            : $hotel->city;
+    })->unique()->values();
         return view('home', compact('hotels', 'cities'));
     }
 }

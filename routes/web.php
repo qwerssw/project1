@@ -14,7 +14,13 @@ use App\Http\Controllers\ImageController;
 // Главная страница
 Route::get('/', [HotelController::class, 'index'])->name('home');
 Route::get('/about',[AboutController::class,'about'])->name('about');
-
+// routes/web.php
+Route::get('/lang/{lang}', function ($lang) {
+    if (in_array($lang, ['ru', 'en'])) {
+        session(['locale' => $lang]);
+    }
+    return back();
+})->name('lang.switch');
 
 Route::get('/image', [ImageController::class, 'index']);
 // Маршруты аутентификации

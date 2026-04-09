@@ -417,22 +417,24 @@
     <!-- Поиск -->
     <div class="search-container">
         <form class="search-form" action="{{ route('search') }}" method="GET">
-            <input type="text" name="q" class="search-input" placeholder="Поиск отелей, городов..." value="{{ request('q') }}">
-            <button type="submit" class="search-btn">Найти</button>
+            <input type="text" name="q" class="search-input" placeholder="{{ __('messages.search_placeholder') }}" value="{{ request('q') }}">
+            <button type="submit" class="search-btn">{{ __('messages.find') }}</button>
         </form>
     </div>
 
     <nav class="menu">
-        <a href="{{ route('about') }}">О нас</a>
-        <a href="#">Отели</a>
-        <a href="#">Отзывы</a>
+        <a href="{{ route('about') }}">{{ __('messages.about') }}</a>
+        <a href="#">{{ __('messages.hotels') }}</a>
+        <a href="#">{{ __('messages.reviews') }}</a>
+        <a href="{{ route('lang.switch', 'ru') }}">RU</a>
+<a href="{{ route('lang.switch', 'en') }}">EN</a>
         @auth
             <a href="{{ route('profile') }}" class="profile-icon"> {{ Auth::user()->name }}</a>
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                 @csrf
             </form>
         @else
-            <a href="{{ route('login') }}" class="profile-icon"> Войти</a>
+            <a href="{{ route('login') }}" class="profile-icon"> {{ __('messages.login') }}</a>
         @endauth
     </nav>
 </header>
@@ -440,36 +442,36 @@
 <!-- Hero -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Отели для отдыха</h1>
-        <p>Бронирование, подбор и лучшие предложения по всей Беларуси</p>
-        <button onclick="window.location.href='{{ route('search') }}'">Начать путешествие</button>
+        <h1>{{ __('messages.hotels_for_rest') }}</h1>
+        <p>{{ __('messages.booking_info') }}</p>
+        <button onclick="window.location.href='{{ route('search') }}'">{{ __('messages.start_journey') }}</button>
     </div>
 </section>
 
 <div class="filters">
         <form id="filterForm" action="{{ route('search') }}" method="GET" style="display: flex; gap: 15px; flex-wrap: wrap;">
-    <select id="cityFilter" onchange="applyFilterSort()">
-        <option value="">Все города</option>
+<select name="city" id="cityFilter" onchange="applyFilterSort()">
+            <option value="">{{ __('messages.all_cities') }}</option>
         @foreach($cities ?? [] as $city)
             <option value="{{ $city }}" {{ request('city') == $city ? 'selected' : '' }}>{{ $city }}</option>
         @endforeach
     </select>
 
-    <select id="starsFilter" onchange="applyFilterSort()">
-        <option value="">Все звезды</option>
-        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>5 звезд</option>
-        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>4 звезды</option>
-        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>3 звезды</option>
-        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>2 звезды</option>
-        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>1 звезда</option>
+    <select name="stars" id="starsFilter" onchange="applyFilterSort()">
+        <option value="">{{ __('messages.all_stars') }}</option>
+        <option value="5" {{ request('stars') == '5' ? 'selected' : '' }}>{{ __('messages.stars_5') }}</option>
+        <option value="4" {{ request('stars') == '4' ? 'selected' : '' }}>{{ __('messages.stars_4') }}</option>
+        <option value="3" {{ request('stars') == '3' ? 'selected' : '' }}>{{ __('messages.stars_3') }}</option>
+        <option value="2" {{ request('stars') == '2' ? 'selected' : '' }}>{{ __('messages.stars_2') }}</option>
+        <option value="1" {{ request('stars') == '1' ? 'selected' : '' }}>{{ __('messages.stars_1') }}</option>
     </select>
 
     <select id="sortOrder" onchange="applyFilterSort()">
-        <option value="default" {{ request('sort') == 'default' ? 'selected' : '' }}>По популярности</option>
-        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Цена ↑</option>
-        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Цена ↓</option>
-        <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Название ↑</option>
-        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Название ↓</option>
+        <option value="default" {{ request('sort') == 'default' ? 'selected' : '' }}>{{ __('messages.sort_popular') }}</option>
+        <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>{{ __('messages.price_asc') }}↑</option>
+        <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>{{ __('messages.price_desc') }}</option>
+        <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>{{ __('messages.name_asc') }}</option>
+        <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>{{ __('messages.name_desc') }}</option>
     </select>
      <button type="submit" class="btn" style="display: flex;             
     justify-content: center;    
@@ -482,7 +484,7 @@
     text-decoration: none;
     cursor: pointer;
     font-size:14px;
-    transition: 0.3s;">Применить</button>
+    transition: 0.3s;">{{ __('messages.apply') }}</button>
 
      <a href="{{ route('search') }}" class="btn" 
      style="display: flex;             
@@ -496,31 +498,32 @@
     text-decoration: none;
     cursor: pointer;
     font-size:14px;
-    transition: 0.3s;">Сбросить</a>
+    transition: 0.3s;">{{ __('messages.reset') }}</a>
     </form>
 </div>
 
 <!-- Контент -->
 <div class="container">
-    <h1>Популярные отели</h1>
+    <h1>{{ __('messages.popular_hotels') }}</h1>
 
     <div class="grid">
         @forelse($hotels as $hotel)
             <div class="card">
             <img src="{{ $hotel->images->first()->image_path ?? 'default.jpg' }}" alt="{{ $hotel->name }}">
                 <div class="card-body">
-                    <div class="card-title">{{ $hotel->name }}</div>
+                    <div class="card-title">{{ app()->getLocale() == 'en' ? $hotel->name_en : $hotel->name }}</div>
                     <div class="card-text">
-                        {{ $hotel->city }} |⚝ {{ $hotel->stars }} звезд<br>
-                        {{ \Illuminate\Support\Str::limit($hotel->description, 80) }}
+                         {{ app()->getLocale() == 'en' ? $hotel->city_en : $hotel->city }}
+                          |⚝ {{ $hotel->stars }} {{ __('messages.stars') }}<br>
+                        {{ \Illuminate\Support\Str::limit(app()->getLocale() == 'en' ? $hotel->description_en : $hotel->description, 80) }}
                     </div>
-                    <a href="/hotels/{{ $hotel->id }}" class="btn">Подробнее</a>
+                    <a href="/hotels/{{ $hotel->id }}" class="btn">{{ __('messages.details') }}</a>
                 </div>
             </div>
         @empty
             <div style="text-align: center; grid-column: 1/-1; padding: 50px;">
-                <h3>Отели не найдены</h3>
-                <p>Попробуйте изменить параметры поиска</p>
+                <h3>{{ __('messages.no_hotels') }}</h3>
+                <p>{{ __('messages.try_change_params') }}</p>
             </div>
         @endforelse
     </div>
@@ -528,8 +531,8 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-section">
-            <h3>О нас</h3>
-            <p>hotels.by — крупнейший сервис по бронированию отелей в Беларуси. Мы помогаем найти лучшие варианты проживания по выгодным ценам.</p>
+            <h3>{{ __('messages.about_us') }}</h3>
+            <p>{{ __('messages.about_text') }}</p>
             <div class="social-links">
                 <a href="#"></a>
                 <a href="#"></a>
@@ -539,33 +542,32 @@
         </div>
 
         <div class="footer-section">
-            <h3>Быстрые ссылки</h3>
+            <h3>{{ __('messages.quick_links') }}</h3>
             <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Все отели</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Часто задаваемые вопросы</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </div>
+                <li><a href="#">{{ __('messages.home') }}</a></li>
+<li><a href="#">{{ __('messages.all_hotels') }}</a></li>
+<li><a href="#">{{ __('messages.reviews') }}</a></li>
+<li><a href="#">{{ __('messages.faq') }}</a></li>
+<li><a href="#">{{ __('messages.contacts') }}</a></li>
+</ul>
+</div>
 
-        <div class="footer-section">
-            <h3>Контакты</h3>
-            <ul class="contact-info">
-                <li> <span>г. Минск, пр-т Независимости, 10</span></li>
-                <li> <span>+375 (29) 123-45-67</span></li>
-                <li><span>hotels@gmail.com</span></li>
-                <li><span>Ежедневно с 9:00 до 21:00</span></li>
-            </ul>
-        </div>
+<div class="footer-section">
+<h3>{{ __('messages.contact_info') }}</h3>
+<ul class="contact-info">
+<li> <span>{{ __('messages.address') }}</span></li>
+<li> <span>{{ __('messages.phone') }}</span></li>
+<li><span>{{ __('messages.email') }}</span></li>
+<li><span>{{ __('messages.work_time') }}</span></li>
+</ul>
+</div>
 
-        <div class="footer-section">
-            <h3>Подписка</h3>
-            <p>Подпишитесь на наши новости и получайте лучшие предложения первыми!</p>
-            <form class="newsletter-form" action="#" method="POST">
-                @csrf
-                <input type="email" class="newsletter-input" placeholder="Ваш email" required>
-                <button type="submit" class="newsletter-btn">Подписаться</button>
+<div class="footer-section">
+<h3>{{ __('messages.subscribe_title') }}</h3>
+<p>{{ __('messages.subscribe_text') }}</p>
+<form class="newsletter-form" action="#" method="POST">
+@csrf                <input type="email" class="newsletter-input" placeholder="Ваш email" required>
+                <button type="submit" class="newsletter-btn">{{ __('messages.subscribe') }}</button>
             </form>
         </div>
   

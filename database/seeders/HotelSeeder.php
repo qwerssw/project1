@@ -13,8 +13,11 @@ class HotelSeeder extends Seeder
         DB::table('hotels')->insert([
             [
                 'name' => 'Отель Европа',
+                'name_en' => 'Hotel Europe',
                 'description' => 'Роскошный пятизвездочный отель в историческом центре Минска. Расположен в здании начала XX века после полной реставрации. Номера класса люкс, ресторан высокой кухни, спа-центр с бассейном, конференц-залы.',
+                'description_en' => 'Luxurious five-star hotel in the historic center of Minsk. Housed in a fully restored early 20th-century building. Luxury rooms, fine dining restaurant, spa with pool, conference halls.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'ул. Интернациональная, 28',
                 'map_lat' => 53.9015,
                 'map_lng' => 27.5567,
@@ -25,8 +28,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'Отель Виктория',
+                'name_en' => 'Hotel Victoria',
                 'description' => 'Престижный четырехзвездочный отель в центре Минска, рядом с Площадью Победы. Просторные номера с панорамным видом на город. Ресторан белорусской кухни, фитнес-центр, сауна.',
+                'description_en' => 'Prestigious four-star hotel in the center of Minsk, near Victory Square. Spacious rooms with panoramic city views. Belarusian cuisine restaurant, fitness center, sauna.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'пр-т Победителей, 59',
                 'map_lat' => 53.9123,
                 'map_lng' => 27.5812,
@@ -37,8 +43,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'Отель Минск',
+                'name_en' => 'Hotel Minsk',
                 'description' => 'Знаменитый отель с богатой историей, расположенный напротив Дома правительства. Панорамный ресторан на верхнем этаже с видом на Минск.',
+                'description_en' => 'Famous hotel with rich history, located opposite the Government House. Panoramic restaurant on the top floor with views of Minsk.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'ул. Сторожовская, 15',
                 'map_lat' => 53.8967,
                 'map_lng' => 27.5565,
@@ -49,8 +58,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'DoubleTree by Hilton Minsk',
+                'name_en' => 'DoubleTree by Hilton Minsk',
                 'description' => 'Современный международный отель сети Hilton в Минске. Просторные номера, фитнес-центр, ресторан, бар на крыше.',
+                'description_en' => 'Modern international Hilton hotel in Minsk. Spacious rooms, fitness center, restaurant, rooftop bar.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'пр-т Победителей, 9',
                 'map_lat' => 53.9089,
                 'map_lng' => 27.5678,
@@ -61,8 +73,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'Отель Буг',
+                'name_en' => 'Hotel Bug',
                 'description' => 'Одна из самых известных гостиниц Минска, расположенная на площади Независимости. Уютные номера, ресторан, кафе.',
+                'description_en' => 'One of the most famous hotels in Minsk, located on Independence Square. Cozy rooms, restaurant, cafe.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'пл. Независимости, 11',
                 'map_lat' => 53.9001,
                 'map_lng' => 27.5556,
@@ -73,8 +88,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'Astoria Hotel',
+                'name_en' => 'Astoria Hotel',
                 'description' => 'Отель Astoria — современный и комфортный отель в центре Минска. Уютные номера, бесплатный Wi-Fi, ресторан с европейской кухней.',
+                'description_en' => 'Astoria Hotel — modern and comfortable hotel in the center of Minsk. Cozy rooms, free Wi-Fi, restaurant with European cuisine.',
                 'city' => 'Минск',
+                'city_en' => 'Minsk',
                 'adress' => 'ул. Кирова, 8',
                 'map_lat' => 53.893,
                 'map_lng' => 27.547,
@@ -85,21 +103,12 @@ class HotelSeeder extends Seeder
             ],
             
             [
-                'name' => 'Гостиница Брест',
-                'description' => 'Центральная гостиница Бреста, расположенная на главной площади города. Современные номера, ресторан с белорусской и европейской кухней.',
-                'city' => 'Брест',
-                'adress' => 'ул. Ленина, 2',
-                'map_lat' => 52.0976,
-                'map_lng' => 23.6875,
-                'price_per_night' => 130,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
                 'name' => 'Эрмитаж Брест',
+                'name_en' => 'Hermitage Brest',
                 'description' => 'Уютный отель в историческом центре Бреста, недалеко от пешеходной улицы Советская. Комфортабельные номера, ресторан, сауна.',
+                'description_en' => 'Cozy hotel in the historic center of Brest, near the pedestrian Sovetskaya street. Comfortable rooms, restaurant, sauna.',
                 'city' => 'Брест',
+                'city_en' => 'Brest',
                 'adress' => 'ул. Гоголя, 7',
                 'map_lat' => 52.0912,
                 'map_lng' => 23.6891,
@@ -111,8 +120,11 @@ class HotelSeeder extends Seeder
             
             [
                 'name' => 'Отель Крон',
+                'name_en' => 'Hotel Kron',
                 'description' => 'Современный отель в Гродно, расположенный на набережной реки Неман. Вид на старый город и замки.',
+                'description_en' => 'Modern hotel in Grodno, located on the embankment of the Neman River. View of the old town and castles.',
                 'city' => 'Гродно',
+                'city_en' => 'Grodno',
                 'adress' => 'ул. Советская, 8',
                 'map_lat' => 53.6785,
                 'map_lng' => 23.8283,
@@ -123,8 +135,11 @@ class HotelSeeder extends Seeder
             ],
             [
                 'name' => 'Семашко',
+                'name_en' => 'Semashko',
                 'description' => 'Отель в историческом здании в центре Гродно, недалеко от Коложской церкви. Аутентичная атмосфера.',
+                'description_en' => 'Hotel in a historic building in the center of Grodno, near the Kalozha Church. Authentic atmosphere.',
                 'city' => 'Гродно',
+                'city_en' => 'Grodno',
                 'adress' => 'ул. Замковая, 2',
                 'map_lat' => 53.6771,
                 'map_lng' => 23.8265,
@@ -134,94 +149,6 @@ class HotelSeeder extends Seeder
                 'updated_at' => now()
             ],
             
-    
-            [
-                'name' => 'Отель Витебск',
-                'description' => 'Центральная гостиница Витебска, расположенная на площади Победы. Удобное расположение для участников "Славянского базара".',
-                'city' => 'Витебск',
-                'adress' => 'ул. Ленина, 1',
-                'map_lat' => 55.1903,
-                'map_lng' => 30.2032,
-                'price_per_night' => 120,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'name' => 'Гостиница Лучеса',
-                'description' => 'Уютный отель в тихом районе Витебска, недалеко от набережной Западной Двины. Сауна, бассейн.',
-                'city' => 'Витебск',
-                'adress' => 'ул. Фрунзе, 45',
-                'map_lat' => 55.1921,
-                'map_lng' => 30.1987,
-                'price_per_night' => 90,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            
-            [
-                'name' => 'Гостиница Гомель',
-                'description' => 'Центральная гостиница Гомеля, расположенная на площади Ленина. Рядом - Дворец Румянцевых-Паскевичей.',
-                'city' => 'Гомель',
-                'adress' => 'пл. Ленина, 4',
-                'map_lat' => 52.4456,
-                'map_lng' => 31.0123,
-                'price_per_night' => 110,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'name' => 'Парк-отель Гомель',
-                'description' => 'Отель в живописном парке, недалеко от Дворца. Номера с видом на реку Сож. Спа-центр.',
-                'city' => 'Гомель',
-                'adress' => 'ул. Пушкина, 5',
-                'map_lat' => 52.4432,
-                'map_lng' => 31.0189,
-                'price_per_night' => 160,
-                'stars' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            
-            [
-                'name' => 'Отель Могилев',
-                'description' => 'Центральная гостиница Могилева, расположенная на площади Славы. Рядом - драматический театр.',
-                'city' => 'Могилев',
-                'adress' => 'ул. Первомайская, 8',
-                'map_lat' => 53.9134,
-                'map_lng' => 30.3365,
-                'price_per_night' => 100,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            
-            [
-                'name' => 'Санаторий Нарочь',
-                'description' => 'Крупнейший санаторно-оздоровительный комплекс на берегу озера Нарочь. Лечение на основе минеральных вод.',
-                'city' => 'Нарочь',
-                'adress' => 'ул. Санаторная, 5',
-                'map_lat' => 54.8765,
-                'map_lng' => 26.7432,
-                'price_per_night' => 250,
-                'stars' => 4,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'name' => 'Отель Нарочь',
-                'description' => 'Уютный отель в курортной зоне озера Нарочь. Номера с видом на озеро, пляж, прокат лодок.',
-                'city' => 'Нарочь',
-                'adress' => 'ул. Набережная, 12',
-                'map_lat' => 54.8734,
-                'map_lng' => 26.7456,
-                'price_per_night' => 160,
-                'stars' => 3,
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-        ]);
+     ]);
     }
 }
