@@ -19,7 +19,8 @@
         color: #222;
         line-height: 1.6;
     }
-        .header {
+       /* Шапка */
+  .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -49,7 +50,7 @@
             color: gray;
         }
 
-        /* Поиск посередине */
+        /* Поиск*/
         .search-container {
             flex: 2;
             display: flex;
@@ -117,7 +118,7 @@
         /* Hero секция */
         .hero {
             height: 450px;
-            background: url('https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1920,h_1080,q_70,f_auto,g_auto/Imagery/Renderings/Waldorf%20Astoria/M/MSQWAWA/4.png') center/cover no-repeat;
+            background: url('https://cdn.worldota.net/t/640x400/extranet/a8/a7/a8a7782aa805636c1dc31ef25ea0e75ae6d3865f.JPEG') center/cover no-repeat;
             border-radius: 25px;
             display: flex;
             align-items: center;
@@ -140,7 +141,7 @@
             position: relative;
             z-index: 1;
             color: white;
-            max-width: 500px;
+            max-width: 508px;
             text-align: center;
         }
 
@@ -209,8 +210,6 @@
 
     a {
         color: #0072ff;
-        text-decoration: none;
-        font-weight: 600;
     }
 
     a:hover {
@@ -368,42 +367,14 @@
 <div class="container">
 
 <!-- Шапка -->
-<header class="header">
-    <div class="logo">
-        <div>
-            <div class="logo-title">hotels.by</div>
-        </div>
-    </div>
-
-    <!-- Поиск -->
-    <div class="search-container">
-        <form class="search-form" action="{{ route('search') }}" method="GET">
-            <input type="text" name="q" class="search-input" placeholder="Поиск отелей, городов..." value="{{ request('q') }}">
-            <button type="submit" class="search-btn">Найти</button>
-        </form>
-    </div>
-
-    <nav class="menu">
-        <a href="{{ route('about') }}">О нас</a>
-        <a href="#">Отели</a>
-        <a href="#">Отзывы</a>
-        @auth
-            <a href="{{ route('profile') }}" class="profile-icon"> {{ Auth::user()->name }}</a>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                @csrf
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="profile-icon"> Войти</a>
-        @endauth
-    </nav>
-</header>
+@include('layouts.header')
 
 <!-- Hero -->
 <section class="hero">
     <div class="hero-content">
-        <h1>Отели для отдыха</h1>
-        <p>Бронирование, подбор и лучшие предложения по всей Беларуси</p>
-        <button onclick="window.location.href='{{ route('search') }}'">Начать путешествие</button>
+        <h1>{{ __('messages.hotels_for_rest') }}</h1>
+        <p>{{ __('messages.booking_info') }}</p>
+        <button onclick="window.location.href='{{ route('search') }}'">{{ __('messages.start_journey') }}</button>
     </div>
 </section>
     <div class="section about-advantages" style="display: flex; gap: 195px; flex-wrap: wrap; margin-top:40px;">
@@ -425,51 +396,8 @@
     <div class="section">
         <div class="stats">120 000+ гостей уже забронировали через Hotels.by!</div>
     </div>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>О нас</h3>
-            <p>hotels.by — крупнейший сервис по бронированию отелей в Беларуси. Мы помогаем найти лучшие варианты проживания по выгодным ценам.</p>
-            <div class="social-links">
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-        </div>
+@include('layouts.footer')
 
-        <div class="footer-section">
-            <h3>Быстрые ссылки</h3>
-            <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Все отели</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Часто задаваемые вопросы</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>Контакты</h3>
-            <ul class="contact-info">
-                <li> <span>г. Минск, пр-т Независимости, 10</span></li>
-                <li> <span>+375 (29) 123-45-67</span></li>
-                <li><span>hotels@gmail.com</span></li>
-                <li><span>Ежедневно с 9:00 до 21:00</span></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>Подписка</h3>
-            <p>Подпишитесь на наши новости и получайте лучшие предложения первыми!</p>
-            <form class="newsletter-form" action="#" method="POST">
-                @csrf
-                <input type="email" class="newsletter-input" placeholder="Ваш email" required>
-                <button type="submit" class="newsletter-btn">Подписаться</button>
-            </form>
-        </div>
-  
-</footer>
 
 </div>
 </body>

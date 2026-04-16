@@ -59,4 +59,26 @@ return [
     'subscribe_text' => 'Подпишитесь на наши новости и получайте лучшие предложения первыми!',
     'email_placeholder' => 'Ваш email',
     'subscribe' => 'Подписаться',
+
+    //Личный кабинет
+    'my_account' => 'Личный кабинет',
+        'profile' => 'Профиль',
+    'my_bookings' => 'Мои бронирования',
+    'favorites' => 'Избранные отели',
+    'home' => 'На главную',
+    'logout' => 'Выйти',
+    'edit_profile' => 'Редактировать',
+    'registered_on' => 'Зарегистрирован: :date',
+    'check_in' => 'Заезд',
+    'check_out' => 'Выезд',
+    'total_price' => 'Стоимость',
+    'booking_details' => 'Подробнее об отеле',
+    'no_bookings' => 'У вас пока нет бронирований',
+    'go_to_hotels' => 'Перейти к отелям',
+    'stars' => 'звезд',
+    'price_per_night' => 'BYN / ночь',
+    'details' => 'Подробнее',
+    'no_favorites' => 'У вас пока нет избранных отелей',
+    'choose_hotel' => 'Выбрать отель',
+
 ];

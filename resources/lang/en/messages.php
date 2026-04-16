@@ -59,4 +59,35 @@ return [
     'subscribe_text' => 'Subscribe and get the best offers first!',
     'email_placeholder' => 'Your email',
     'subscribe' => 'Subscribe',
+
+     'profile' => 'Profile',
+    'my_bookings' => 'My Bookings',
+    'favorites' => 'Favorite Hotels',
+    'home' => 'Home',
+    'logout' => 'Logout',
+    'edit_profile' => 'Edit',
+
+    // Профиль пользователя
+    'my_account' => 'My Account',
+    'registered_on' => 'Registered on :date',
+
+    // Статусы бронирования
+    'status_confirmed' => 'Confirmed',
+    'status_pending' => 'Pending',
+    'status_canceled' => 'Canceled',
+
+    // Мои бронирования
+    'check_in' => 'Check-in',
+    'check_out' => 'Check-out',
+    'total_price' => 'Total Price',
+    'booking_details' => 'Hotel Details',
+    'no_bookings' => 'You have no bookings yet',
+    'go_to_hotels' => 'Go to Hotels',
+
+    // Избранные отели
+    'stars' => 'stars',
+    'price_per_night' => 'BYN / night',
+    'details' => 'Details',
+    'no_favorites' => 'You have no favorite hotels yet',
+    'choose_hotel' => 'Choose a hotel', 
 ];

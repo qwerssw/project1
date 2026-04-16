@@ -15,8 +15,7 @@
             background-color: #eaf3f5ff;
             color: #333;
         }
-
-        /* Шапка */
+       /* Шапка */
         .header {
             display: flex;
             justify-content: space-between;
@@ -111,7 +110,6 @@
         .menu a:hover {
             color: #4b2e7dff;
         }
-
         /* Hero секция */
         .hero {
             height: 450px;
@@ -407,37 +405,8 @@
 <body>
 
 <!-- Шапка -->
-<header class="header">
-    <div class="logo">
-        <div>
-            <div class="logo-title">hotels.by</div>
-        </div>
-    </div>
+    @include('layouts.header')
 
-    <!-- Поиск -->
-    <div class="search-container">
-        <form class="search-form" action="{{ route('search') }}" method="GET">
-            <input type="text" name="q" class="search-input" placeholder="{{ __('messages.search_placeholder') }}" value="{{ request('q') }}">
-            <button type="submit" class="search-btn">{{ __('messages.find') }}</button>
-        </form>
-    </div>
-
-    <nav class="menu">
-        <a href="{{ route('about') }}">{{ __('messages.about') }}</a>
-        <a href="#">{{ __('messages.hotels') }}</a>
-        <a href="#">{{ __('messages.reviews') }}</a>
-        <a href="{{ route('lang.switch', 'ru') }}">RU</a>
-<a href="{{ route('lang.switch', 'en') }}">EN</a>
-        @auth
-            <a href="{{ route('profile') }}" class="profile-icon"> {{ Auth::user()->name }}</a>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                @csrf
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="profile-icon"> {{ __('messages.login') }}</a>
-        @endauth
-    </nav>
-</header>
 
 <!-- Hero -->
 <section class="hero">
@@ -528,50 +497,6 @@
         @endforelse
     </div>
     </div>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>{{ __('messages.about_us') }}</h3>
-            <p>{{ __('messages.about_text') }}</p>
-            <div class="social-links">
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-        </div>
-
-        <div class="footer-section">
-            <h3>{{ __('messages.quick_links') }}</h3>
-            <ul>
-                <li><a href="#">{{ __('messages.home') }}</a></li>
-<li><a href="#">{{ __('messages.all_hotels') }}</a></li>
-<li><a href="#">{{ __('messages.reviews') }}</a></li>
-<li><a href="#">{{ __('messages.faq') }}</a></li>
-<li><a href="#">{{ __('messages.contacts') }}</a></li>
-</ul>
-</div>
-
-<div class="footer-section">
-<h3>{{ __('messages.contact_info') }}</h3>
-<ul class="contact-info">
-<li> <span>{{ __('messages.address') }}</span></li>
-<li> <span>{{ __('messages.phone') }}</span></li>
-<li><span>{{ __('messages.email') }}</span></li>
-<li><span>{{ __('messages.work_time') }}</span></li>
-</ul>
-</div>
-
-<div class="footer-section">
-<h3>{{ __('messages.subscribe_title') }}</h3>
-<p>{{ __('messages.subscribe_text') }}</p>
-<form class="newsletter-form" action="#" method="POST">
-@csrf                <input type="email" class="newsletter-input" placeholder="Ваш email" required>
-                <button type="submit" class="newsletter-btn">{{ __('messages.subscribe') }}</button>
-            </form>
-        </div>
-  
-</footer>
-
+@include('layouts.footer')
 </body>
 </html>

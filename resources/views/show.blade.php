@@ -466,7 +466,6 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
         .btn-like:hover {
             background: #b91c1c;
             transform: translateY(-2px);
@@ -498,7 +497,6 @@
             background: #1a1a2e;
             color: #fff;
             padding: 60px 40px 30px;
-            margin-top: 60px;
         }
 
         .footer-content {
@@ -626,37 +624,7 @@
 </head>
 <body>
 <!-- Шапка -->
-<header class="header">
-    <div class="logo">
-        <div>
-            <div class="logo-title">hotels.by</div>
-        </div>
-    </div>
-
-    <!-- Поиск -->
-    <div class="search-container">
-        <form class="search-form" action="{{ route('search') }}" method="GET">
-            <input type="text" name="q" class="search-input" placeholder="Поиск отелей, городов..." value="{{ request('q') }}">
-            <button type="submit" class="search-btn">Найти</button>
-        </form>
-    </div>
-
-    <nav class="menu">
-        <a href="#">О нас</a>
-        <a href="#">Отели</a>
-        <a href="#">Отзывы</a>
-        @auth
-            <a href="{{ route('profile') }}" class="profile-icon"> {{ Auth::user()->name }}</a>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                @csrf
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="profile-icon"> Войти</a>
-        @endauth
-    </nav>
-</header>
-
-
+    @include('layouts.header')
 
 <div class="container">
     <!-- Галерея -->
@@ -804,52 +772,16 @@
         </div>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>О нас</h3>
-            <p>hotels.by — крупнейший сервис по бронированию отелей в Беларуси. Мы помогаем найти лучшие варианты проживания по выгодным ценам.</p>
-            <div class="social-links">
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
-        </div>
-
-        <div class="footer-section">
-            <h3>Быстрые ссылки</h3>
-            <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Все отели</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Часто задаваемые вопросы</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>Контакты</h3>
-            <ul class="contact-info">
-                <li> <span>г. Минск, пр-т Независимости, 10</span></li>
-                <li> <span>+375 (29) 123-45-67</span></li>
-                <li><span>hotels@gmail.com</span></li>
-                <li><span>Ежедневно с 9:00 до 21:00</span></li>
-            </ul>
-        </div>
-
-        <div class="footer-section">
-            <h3>Подписка</h3>
-            <p>Подпишитесь на наши новости и получайте лучшие предложения первыми!</p>
-            <form class="newsletter-form" action="#" method="POST">
-                @csrf
-                <input type="email" class="newsletter-input" placeholder="Ваш email" required>
-                <button type="submit" class="newsletter-btn">Подписаться</button>
-            </form>
-        </div>
-  
-</footer>
+<div style="margin-top: 40px;">
+    <iframe
+        width="100%"
+        height="400"
+        style="border:0; border-radius:20px;"
+        loading="lazy"
+        src="https://www.google.com/maps?q={{ $hotel->map_lat }},{{ $hotel->map_lng }}&z=15&output=embed">
+    </iframe>
+</div>
+@include('layouts.footer')
 
 </body>
 </html>

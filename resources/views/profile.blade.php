@@ -56,6 +56,7 @@
         transition: 0.2s;
         text-decoration: none;
         display: inline-block; 
+        margin-right:10px ;
     }
     .btn:hover { background: #466369ff; }
     
@@ -65,7 +66,25 @@
     .btn-logout:hover {
         background: #466369ff;
     }
-
+    .section-a{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-bottom: 30px; 
+    }
+.section{
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        margin-bottom: 30px; 
+}
     .section h3 {
         margin-top:20px;
         margin-bottom: 20px; 
@@ -97,8 +116,6 @@
     .card-body p { margin-bottom: 10px; color: #334155; }
     
     .empty-message {
-        background: #f1f5f9;
-        padding: 0 40px;
         text-align: center;
         border-radius: 12px;
         color: #64748b;
@@ -108,15 +125,16 @@
 <body>
 
 <div class="sidebar">
-    <h2>Личный кабинет</h2>
-    <a href="{{ route('profile') }}">Профиль</a>
-    <a href="{{ route('bookings.index') }}">Мои бронирования</a>
-    <a href="{{ route('likes.index') }}">Избранные отели</a>
-    <a href="{{ route('home') }}">На главную</a>
+    <h2>{{ __('messages.my_account') }}</h2>
+    <a href="{{ route('home') }}">{{ __('messages.home') }}</a>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <a href="{{ route('lang.switch', 'ru') }}" style="flex: 1; text-align: center; padding: 8px; background: #334155; border-radius: 6px; color: #fff; text-decoration: none;">RU</a>
+        <a href="{{ route('lang.switch', 'en') }}" style="flex: 1; text-align: center; padding: 8px; background: #334155; border-radius: 6px; color: #fff; text-decoration: none;">EN</a>
+    </div>
     <form method="POST" action="{{ route('logout') }}" style="margin-top: auto;">
         @csrf
         <button type="submit" class="btn btn-logout" style="width: 100%; text-align: left;  margin-top: 20px;">
-            Выйти
+            {{ __('messages.logout') }}
         </button>
     </form>
 </div>
@@ -127,14 +145,14 @@
         <div>
             <p><strong>{{ Auth::user()->name }}</strong></p>
             <p>{{ Auth::user()->email }}</p>
-            <p><small>Зарегистрирован: {{ Auth::user()->created_at->format('d.m.Y') }}</small></p>
+            <p><small>{{ __('messages.registered_on') }}: {{ Auth::user()->created_at->format('d.m.Y') }}</small></p>
         </div>
-        <a href="{{ route('profile.edit') }}" class="btn">Редактировать</a>
+        <a href="{{ route('profile.edit') }}" class="btn">{{ __('messages.edit_profile') }}</a>
     </div>
 
     <!-- Мои бронирования (отели) -->
-    <div class="section">
-        <h3>Мои бронирования</h3>
+    <div class="section-a">
+        <h3>{{ __('messages.my_bookings') }}</h3>
         <div class="cards">
             @forelse($bookings ?? [] as $booking)
                 <div class="card">
@@ -159,8 +177,8 @@
                 </div>
             @empty
                 <div class="empty-message">
-                    <p>У вас пока нет бронирований</p>
-                    <a href="{{ route('home') }}" class="btn" style="margin-top: 10px;">Перейти к отелям</a>
+                    <p>{{ __('messages.no_bookings') }}</p>
+                    <a href="{{ route('home') }}" class="btn" style="margin-top: 10px;">{{ __('messages.go_to_hotels') }}</a>
                 </div>
             @endforelse
         </div>
@@ -168,7 +186,7 @@
 
     <!-- Избранные отели -->
     <div class="section">
-        <h3>Избранные отели</h3>
+        <h3>{{ __('messages.favorites') }}</h3>
         <div class="cards">
             @forelse($likes ?? [] as $like)
                 <div class="card">
@@ -183,7 +201,7 @@
                 </div>
             @empty
                 <div class="empty-message">
-                    <p>У вас пока нет избранных отелей</p>
+                    <p>{{ __('messages.no_favorites') }}</p>
                     <a href="{{ route('home') }}" class="btn" style="margin-top: 10px;">Выбрать отель</a>
                 </div>
             @endforelse
