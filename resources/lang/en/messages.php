@@ -90,4 +90,25 @@ return [
     'details' => 'Details',
     'no_favorites' => 'You have no favorite hotels yet',
     'choose_hotel' => 'Choose a hotel', 
+
+    'about_hotel' => 'About the hotel',
+    'guest_reviews' => 'Guest reviews',
+    'no_reviews' => 'No reviews yet. Be the first!',
+    'leave_review' => 'Leave a review',
+    'your_rating' => 'Your rating',
+    'your_review' => 'Your review',
+    'review_placeholder' => 'Share your experience...',
+    'submit_review' => 'Submit review',
+
+    'login_to_review' => 'Login',
+    'register' => 'register',
+    'to_leave_review' => 'to leave a review',
+  'or'=>'or',
+    'book' => 'Book now',
+    'favorites' => 'Add to favorites',
+    'in_favorites' => 'In favorites',
+
+    'per_night' => 'per night',
+    'stars' => 'stars',
+    'guest' => 'Guest',
 ];

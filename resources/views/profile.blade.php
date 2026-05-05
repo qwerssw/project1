@@ -188,8 +188,24 @@
     <div class="section">
         <h3>{{ __('messages.favorites') }}</h3>
         <div class="cards">
+              
             @forelse($likes ?? [] as $like)
                 <div class="card">
+                    <form method="POST" action="{{ route('likes.toggle', $like->hotel) }}" 
+          style="position: absolute; top: 10px; right: 10px;">
+        @csrf
+        <button type="submit" 
+                style="background: rgba(0,0,0,0.6); 
+                       color: white; 
+                       border: none; 
+                       border-radius: 50%; 
+                       width: 30px; 
+                       height: 30px; 
+                       cursor: pointer;
+                       font-size: 16px;">
+            ✕
+        </button>
+    </form>
                     <img src="{{ $like->hotel->images->first()->image_path  }}" alt="{{ $like->hotel->name }}">                    
                         <div class="card-body">
                         <p><strong>{{ $like->hotel->name }}</strong></p>

@@ -24,7 +24,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $lang = app()->getLocale();
+        $lang = app()->getLocale(); 
 
 $nameColumn = $lang == 'en' ? 'name_en' : 'name';
 $cityColumn = $lang == 'en' ? 'city_en' : 'city';

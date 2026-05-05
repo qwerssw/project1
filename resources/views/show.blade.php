@@ -465,6 +465,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            transition: all 0.3s ease;
         }
         .btn-like:hover {
             background: #b91c1c;
@@ -473,6 +474,10 @@
 
         .btn-like.liked {
             background: #16a34a;
+        }
+
+        .btn-like.liked:hover {
+            background: #15803d;
         }
 
         /* Сообщения */
@@ -663,7 +668,7 @@
 
         <div class="hotel-header">
             <div class="hotel-title">
-                <h1>{{ $hotel->name }}</h1>
+                <h1>{{ app()->getLocale() == 'en' ? $hotel->name_en ?? $hotel->name : $hotel->name }}</h1>
                 <div class="hotel-meta">
                     <div class="rating">
                         <span class="stars">
@@ -671,29 +676,29 @@
                                 @if($i <= $hotel->stars) ★ @else ☆ @endif
                             @endfor
                         </span>
-                        <span>{{ $hotel->stars }} звезд</span>
+                        <span>{{ $hotel->stars }} {{ __('messages.stars') }}</span>
                     </div>
                     <div class="city">
-                         {{ $hotel->city }}, {{ $hotel->address ?? 'Беларусь' }}
+                         {{ app()->getLocale() == 'en' ? ($hotel->city_en ?? $hotel->city) : $hotel->city }}, {{ app()->getLocale() == 'en' ? ($hotel->address_en ?? $hotel->address ?? 'Belarus') : ($hotel->address ?? 'Беларусь') }}
                     </div>
                 </div>
             </div>
             <div class="price-card">
                 <div class="price">{{ number_format($hotel->price_per_night, 0, '.', ' ') }} BYN</div>
-                <div class="per-night">за ночь</div>
+                <div class="per-night">{{ __('messages.per_night') }}</div>
             </div>
         </div>
 
         <!-- Описание -->
         <div class="description">
-            <h3>Об отеле</h3>
-            <p>{{ $hotel->description }}</p>
+            <h3>{{ __('messages.about_hotel') }}</h3>
+            <p>{{ app()->getLocale() == 'en' ? ($hotel->description_en ?? $hotel->description) : $hotel->description }}</p>
         </div>
 
 
 <!-- Отзывы -->
 <div class="reviews">
-    <h3>Отзывы гостей</h3>
+    <h3>{{ __('messages.guest_reviews') }}</h3>
     
     @php
         $comments = $hotel->comments ?? collect();
@@ -705,28 +710,28 @@
     @forelse($comments as $comment)
         <div class="review-card">
             <div class="review-header">
-                <span class="review-author">{{ $comment->user->name ?? 'Гость' }}</span>
+                <span class="review-author">{{ $comment->user->name ?? __('messages.guest') }}</span>
                 <span class="review-rating">
                     @for($i = 1; $i <= 5; $i++)
                         @if($i <= $comment->rating) ★ @else ☆ @endif
                     @endfor
                 </span>
             </div>
-            <div class="review-text">{{ $comment->comment }}</div>
+            <div class="review-text">{{ app()->getLocale() == 'en' ? ($comment->comment_en ?? $comment->comment) : $comment->comment }}</div>
             <small style="color: #999; display: block; margin-top: 10px;">{{ $comment->created_at->format('d.m.Y') }}</small>
         </div>
     @empty
-        <p style="color: #666; text-align: center; padding: 30px;">Пока нет отзывов. Будьте первым!</p>
+        <p style="color: #666; text-align: center; padding: 30px;">{{ __('messages.no_reviews') }}</p>
     @endforelse
 
     <!-- Форма добавления отзыва -->
     @auth
     <div class="review-form">
-        <h4>Оставить отзыв</h4>
+        <h4>{{ __('messages.leave_review') }}</h4>
         <form method="POST" action="{{ route('comments.store', $hotel->id) }}">
             @csrf
             <div class="form-group">
-                <label>Ваша оценка</label>
+                <label>{{ __('messages.your_rating') }}</label>
                 <select name="rating" required>
                     <option value="5">⚝⚝⚝⚝⚝</option>
                     <option value="4">⚝⚝⚝⚝</option>
@@ -736,15 +741,15 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Ваш отзыв</label>
-                <textarea name="comment" rows="4" required placeholder="Расскажите о своем опыте проживания..."></textarea>
+                <label>{{ __('messages.your_review') }}</label>
+                <textarea name="comment" rows="4" required placeholder="{{ __('messages.review_placeholder') }}"></textarea>
             </div>
-            <button type="submit" class="submit-btn">Отправить отзыв</button>
+            <button type="submit" class="submit-btn">{{ __('messages.submit_review') }}</button>
         </form>
     </div>
     @else
     <div class="review-form" style="text-align: center;">
-        <p><a href="{{ route('login') }}">Войдите</a> или <a href="{{ route('register') }}">зарегистрируйтесь</a>, чтобы оставить отзыв</p>
+        <p><a href="{{ route('login') }}">{{ __('messages.login_to_review') }}</a> {{ __('messages.or') }} <a href="{{ route('register') }}">{{ __('messages.register') }}</a> {{ __('messages.to_leave_review') }}</p>
     </div>
     @endauth
 </div>
@@ -757,17 +762,17 @@
                     <input type="hidden" name="hotel_id" value="{{ $hotel->id }}">
                     <input type="hidden" name="check_in" value="{{ date('Y-m-d', strtotime('+1 day')) }}">
                     <input type="hidden" name="check_out" value="{{ date('Y-m-d', strtotime('+3 days')) }}">
-                    <button type="submit" class="btn-book">Забронировать</button>
+                    <button type="submit" class="btn-book">{{ __('messages.book') }}</button>
                 </form>
                 <form method="POST" action="{{ route('likes.toggle', $hotel) }}" style="display: inline;">
                     @csrf
                     <button type="submit" class="btn-like {{ $isLiked ?? false ? 'liked' : '' }}">
-                        {{ $isLiked ?? false ? 'В избранном' :  'В избранное' }}
+                        {{ $isLiked ?? false ? __('messages.in_favorites') : __('messages.favorites') }}
                     </button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="btn-book" style="text-decoration: none; display: inline-block;">Забронировать</a>
-                <a href="{{ route('login') }}" class="btn-like" style="text-decoration: none; display: inline-block;">В избранное</a>
+                <a href="{{ route('login') }}" class="btn-book" style="text-decoration: none; display: inline-block;">{{ __('messages.book') }}</a>
+                <a href="{{ route('login') }}" class="btn-like" style="text-decoration: none; display: inline-block;">{{ __('messages.favorites') }}</a>
             @endauth
         </div>
     </div>
