@@ -15,8 +15,8 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $bookings = $user->bookings()->with('hotel')->latest()->get();
-        $likes = $user->likes()->with('hotel')->latest()->get();
+        $bookings = $user->bookings()->with('hotel')->get();
+        $likes = $user->likes()->with('hotel.images')->get();
         
         return view('profile', compact('user', 'bookings', 'likes'));
     }
@@ -29,21 +29,28 @@ class ProfileController extends Controller
         ]);
     }
 
-  
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+        
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->save();
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Имя успешно обновлено',
+            'name' => $user->name
+        ]);
     }
 
-  
+    public function editProfile()
+    {
+        return view('profile-edit', ['user' => Auth::user()]);
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
